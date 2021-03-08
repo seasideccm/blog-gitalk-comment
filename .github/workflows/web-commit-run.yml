@@ -1,0 +1,36 @@
+# This is a basic workflow to help you get started with Actions
+
+name: web-commit-run # 给一组动作（Actions）取个名字
+
+# Controls when the action will run. 控制在什么时候/情况下开始执行动作。关键字是on，别忘了紧跟着一个冒号，“ on: ”  。
+on:
+  # Triggers the workflow on push or pull request events but only for the gh-dev branch 针对gh-dev分支，工作流程被触发的条件是推送（pull）或拉取请求（pull request，同义词：pr、合并请求）事件，也就是说当发生推送（pull）或拉取请求（pull request，同义词：pr、合并请求）事件时就会触发工作流程（工序）开始执行。
+  push:
+    branches: [ gh-dev ]
+  pull_request:
+    branches: [ gh-dev ]
+
+  # Allows you to run this workflow manually from the Actions tab 
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel。运行的工序包括一个或以上顺序或并行的工作。
+jobs:
+  # This workflow contains a single job called "build" 这个工序只有一项工作，就是构建 "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
